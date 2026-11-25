@@ -28,7 +28,7 @@
 
 ```text
 .
-├── index.html                    # 单文件站点（由 Actions 从已验证 CDN 源同步）
+├── index.html                    # 单文件站点，已提交到仓库
 ├── README.md
 └── .github/workflows/deploy-pages.yml
 ```
@@ -44,9 +44,9 @@ python3 -m http.server 8000
 
 仓库使用 GitHub Actions 发布 GitHub Pages：
 
-1. 手动运行 `Deploy Liudeng to GitHub Pages`，或推送 `index.html` 触发。
-2. 首次运行会从 CDN 拉取已验证的单文件版本，提交为 `index.html`，然后发布到 Pages。
-3. 后续替换 `index.html` 并推送即可重新发布。
+1. 在 Actions 中手动运行 `Deploy Liudeng to GitHub Pages`，或推送 `index.html` 触发。
+2. 工作流把 `index.html` 打包为 Pages artifact 并发布，不需要构建步骤。
+3. 替换 `index.html` 并推送即可重新发布。
 
 ## 内容提示
 
