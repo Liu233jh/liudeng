@@ -9,7 +9,7 @@ on:
       - '.github/workflows/deploy-pages.yml'
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -27,27 +27,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Ensure standalone HTML exists
-        run: |
-          if [ ! -s index.html ]; then
-            curl -fsSL "https://aka.doubaocdn.com/s/QxyUJhk7x5" -o index.html
-          fi
-          test -s index.html
-
-      - name: Commit synced HTML
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          if ! git diff --cached --quiet; then
-            git commit -m "Sync Liudeng standalone HTML [skip ci]"
-            git push
-          fi
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Stage site
         run: |
